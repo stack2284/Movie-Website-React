@@ -18,10 +18,12 @@ function MovieCard({ movie }) {
                     <button className="fav-btn" onClick={onfavclick}> ♥
                     </button>
                     <div className="movie-info">
+                        <div className="textbox">
                         <h3>{movie.title}</h3>
                         <p className='date'>{releaseYear}</p>
                         <p className='rating'>LANGUAGE: {language}</p>
                         <p className='desc'>{movie.overview}</p>
+                        </div>
                     </div>
                 </div>
             </div>
