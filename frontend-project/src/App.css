@@ -1,0 +1,25 @@
+:root {
+  --primary-background: #190019;
+  --a : #2B124C;
+  --b : #522B5B;
+  --c : #7A2B5B;
+  --d : #854F6C;
+  --e : #DFB6B2;
+  --f : white;
+  --primary-text: white;
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

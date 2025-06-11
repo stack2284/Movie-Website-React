@@ -1,0 +1,166 @@
+.bodyx{
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    width: auto;
+    height: auto;
+    margin: 2%;
+}
+
+.movie-card {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+}
+.movie-poster {
+    position: relative;
+    width:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    position: relative;
+}
+.movie-poster img {
+    padding: 0.5vb;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    border-radius: 10%;
+    object-fit: cover;  /* This ensures the image covers the area */
+    display: block;
+}
+
+.movie-poster img:hover{
+    transform: scale(1.05);
+    transition: var(--transition);
+    filter: blur(0.5rem);
+    opacity: 1;
+}
+
+.movie-poster::after, .movie-poster::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background: rgba(0, 0, 0, 1); */
+    background-image: conic-gradient( var(--a),var(--b), var(--c) , var(--d) , var(--e), var(--a) );
+    z-index: -1;
+    border-radius: 10%;
+} 
+
+.movie-poster::before{
+    filter: blur(1.5rem);
+    opacity: 1;
+}
+
+.movie-poster:hover::after{
+    transform: scale(1.05);
+    transition: var(--transition);
+}
+
+.movie-poster:hover img{
+    transform: scale(1.05);
+    transition: var(--transition);
+    filter: blur(1rem) brightness(2);
+    opacity: 1;
+}
+
+.movie-poster:hover::before{
+    transform: scale(1.05);
+    transition: var(--transition);
+    
+}
+
+
+.fav-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 13%;
+    aspect-ratio: 1/1;  /* Makes it perfectly circular */
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    z-index: 2;  /* Ensures it's above other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    z-index: 2;
+    opacity: 0;
+    background-color: var(--d);
+    font-size: 3vb;
+}
+
+.movie-info{
+    position: absolute;
+    display: flex;
+    padding: 7%;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;  /* Start invisible */
+    transform: translateY(20px);  /* Start slightly below */
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+.movie-info h3{
+    font-size: clamp(1rem, 5vw, 2.5rem);
+    font-weight: bolder;
+    margin-bottom: 0rem; 
+    color: black;
+}
+.movie-info .date{
+    font-weight: bold;
+    font-size: 1.5vb;
+    color: black;
+}
+
+.movie-info .rating{
+    font-size: 1.5vb;
+    color: black;
+}
+
+.movie-info .desc{
+    font-size: 2vb;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;  
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: black;
+}
+.movie-poster:hover .fav-btn {
+    transform: scale(1.1);
+    transition: var(--transition);
+}
+
+.movie-poster:hover .fav-btn,
+.movie-poster:hover .movie-info {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+.movie-info .date,
+.movie-info .rating,
+.movie-info .desc {
+    margin-bottom: 0rem;     /* Add consistent spacing between info items */
+}
