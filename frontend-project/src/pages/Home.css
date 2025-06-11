@@ -1,7 +1,8 @@
 .home {
   padding: 2rem;
   min-height: 100vh;
-  background-color: var(--primary-background);
+  /* background-color: var(--primary-background); */
+  background: none;
 }
 
 .search-form {
@@ -86,9 +87,7 @@
 
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem;
-  width: 100%;
-  box-sizing: border-box;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
 }

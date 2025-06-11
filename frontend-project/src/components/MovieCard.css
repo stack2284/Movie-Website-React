@@ -61,7 +61,7 @@
 
 .movie-poster::before{
     filter: blur(1.5rem);
-    opacity: 1;
+    opacity: 0.5;
 }
 
 .movie-poster:hover::after{
