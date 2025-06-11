@@ -4,6 +4,7 @@ import NavBar from './components/NavBar'
 import Sign_in from './pages/Sign_in'
 import Sign_up from './pages/Sign_up'
 import Test from './pages/test' 
+import Search from './pages/Search'
 import './App.css'
 import {Routes , Route} from 'react-router-dom'
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/signup' element={<Sign_up/>} />
         <Route path='/favourite' element={<Favourite/>} />
         <Route path='/test' element={<Test/>} />
+        <Route path='/search' element={<Search/>} />
       </Routes>
     </main>
     </div>

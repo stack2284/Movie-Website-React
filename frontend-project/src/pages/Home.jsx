@@ -1,84 +1,87 @@
-import { useState, useEffect } from "react";
-import './Home.css';
-import { searchMovies, getPopularMovies } from '../services/api';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from "../components/NavBar";
-import Carousel from "../components/Carousel";
+import HomeCarousel from '../components/HomeCarousel';
+import Hero from '../components/Hero';
+import GradientBackground from '../components/GradientBackground';
+import {
+  getPopularMovies,
+  getTrendingMovies,
+  getTopRatedMovies,
+  getPopularTV,
+  getTrendingTV,
+  getImageUrl
+} from '../services/api';
+import './Home.css';
 
 function Home() {
-    const [searchQuery, setSearchQuery] = useState("");
-    const [popularMovies, setPopularMovies] = useState([]);
-    const [searchResults, setSearchResults] = useState([]);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [query, setQuery] = useState('');
+    const [heroMovies, setHeroMovies] = useState([]);
+    const [heroIndex, setHeroIndex] = useState(0);
+    const navigate = useNavigate();
+    const intervalRef = useRef(null);
 
     useEffect(() => {
-        const fetchMovies = async () => {
-            try {
-                const moviesData = await getPopularMovies();
-                setPopularMovies(moviesData);
-            } catch (error) {
-                console.log(error);
-                setError("Failed to load...");
-            } finally {
-                setLoading(false);
+        getTrendingMovies().then(movies => {
+            if (movies && movies.length > 0) {
+                setHeroMovies(movies.slice(0, 5));
+                setHeroIndex(0);
             }
-        }
-        fetchMovies();
+        });
     }, []);
 
-    const handleSearch = async (e) => {
+    useEffect(() => {
+        if (heroMovies.length > 1) {
+            intervalRef.current = setInterval(() => {
+                setHeroIndex(prev => (prev + 1) % heroMovies.length);
+            }, 5000);
+            return () => clearInterval(intervalRef.current);
+        }
+    }, [heroMovies]);
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        if (!searchQuery.trim()) return;
-        if (loading) return;
-        setLoading(true);
-        try {
-            const results = await searchMovies(searchQuery);
-            setSearchResults(results);
-            setError(null);
-        } catch (error) {
-            console.log(error);
-            setError("Failed to search...");
-        } finally {
-            setLoading(false);
+        if (query.trim()) {
+            navigate(`/search?q=${encodeURIComponent(query.trim())}`);
         }
     };
 
-    return (
-        <div>
-            <NavBar />
-            <div className="home">
-                <form onSubmit={handleSearch} className="search-form">
-                    <input
-                        type="text"
-                        placeholder="Search for movies..."
-                        className="search-input"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    <button type="submit" className="search-button">Search</button>
-                </form>
+    const featuredMovie = heroMovies[heroIndex];
 
-                {loading && <div className="loading">Loading...</div>}
-                {error && <div className="error">Error: {error}</div>}
-                
-                {!loading && !error && (
-                    <div className="movies-section">
-                        {searchQuery ? (
-                            <Carousel 
-                                title={`Search Results for "${searchQuery}"`} 
-                                movies={searchResults} 
-                            />
-                        ) : (
-                            <Carousel 
-                                title="Popular Movies" 
-                                movies={popularMovies} 
-                            />
-                        )}
-                    </div>
-                )}
+    return (
+        <>
+            <GradientBackground />
+            <div>
+                <NavBar />
+                <div className="home">
+                    <form onSubmit={handleSubmit} className="search-form">
+                        <input
+                            type="text"
+                            placeholder="Search for movies..."
+                            className="search-input"
+                            value={query}
+                            onChange={e => setQuery(e.target.value)}
+                        />
+                        <button type="submit" className="search-button">Search</button>
+                    </form>
+                    {featuredMovie && (
+                      <Hero
+                        backgroundImage={getImageUrl.backdrop(featuredMovie.backdrop_path)}
+                        title={featuredMovie.title}
+                        overview={featuredMovie.overview}
+                        primaryBtn={{ label: 'View Details', to: `/movie/${featuredMovie.id}` }}
+                        secondaryBtn={{ label: 'Trending Now', href: '#trending' }}
+                      />
+                    )}
+                    <HomeCarousel title="Popular Movies" fetchFn={getPopularMovies} />
+                    <HomeCarousel title="Trending Movies" fetchFn={getTrendingMovies} />
+                    <HomeCarousel title="Top Rated Movies" fetchFn={getTopRatedMovies} />
+                    <HomeCarousel title="Popular TV Shows" fetchFn={getPopularTV} isTV />
+                    <HomeCarousel title="Trending TV Shows" fetchFn={getTrendingTV} isTV />
+                </div>
             </div>
-        </div>
-    )
+        </>
+    );
 }
 
 export default Home;

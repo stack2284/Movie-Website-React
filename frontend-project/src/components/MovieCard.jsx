@@ -6,6 +6,10 @@ function MovieCard({ movie }) {
         alert("click");
     }
 
+    // Handle missing data gracefully
+    const releaseYear = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
+    const language = movie.original_language ? movie.original_language.toUpperCase() : 'N/A';
+
     return (
         <div className="bodyx">
             <div className="movie-card">
@@ -15,8 +19,8 @@ function MovieCard({ movie }) {
                     </button>
                     <div className="movie-info">
                         <h3>{movie.title}</h3>
-                        <p className='date'>{movie.release_date.split('-')[0]}</p>
-                        <p className='rating'>USER RATING: {movie.rating}</p>
+                        <p className='date'>{releaseYear}</p>
+                        <p className='rating'>LANGUAGE: {language}</p>
                         <p className='desc'>{movie.overview}</p>
                     </div>
                 </div>
@@ -28,7 +32,7 @@ MovieCard.propTypes = {
     movie: PropTypes.shape({
         title: PropTypes.string.isRequired,
         release_date: PropTypes.string,
-        rating: PropTypes.string,
+        original_language: PropTypes.string,
         overview: PropTypes.string,
         poster_path: PropTypes.string.isRequired,
     }).isRequired,
@@ -37,7 +41,7 @@ MovieCard.defaultProps = {
     movie: {
         title: "Movie Title",
         release_date: "",
-        rating: "",
+        original_language: "en",
         description: "no description avaliable",
         poster_path: "",
     }

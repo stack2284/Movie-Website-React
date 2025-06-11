@@ -7,9 +7,57 @@ export const getPopularMovies = async () => {
     return data.results;
 }
 
+export const getApiMovies = async (query) => {
+    const response = await fetch(`${BASE_URL}/movie/${query}?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.results;
+}
+
 export const searchMovies = async (query) => {
     const response = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`);
     const data = await response.json();
     return data.results;
 }
+
+// New functions for more categories
+export const getTrendingMovies = async () => {
+    const response = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.results;
+}
+
+export const getTopRatedMovies = async () => {
+    const response = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.results;
+}
+
+export const getUpcomingMovies = async () => {
+    const response = await fetch(`${BASE_URL}/movie/upcoming?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.results;
+}
+
+export const getPopularTV = async () => {
+    const response = await fetch(`${BASE_URL}/tv/popular?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.results;
+}
+
+export const getTrendingTV = async () => {
+    const response = await fetch(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.results;
+}
+
+export const getTopRatedTV = async () => {
+    const response = await fetch(`${BASE_URL}/tv/top_rated?api_key=${API_KEY}`);
+    const data = await response.json();
+    return data.results;
+}
+
+export const getImageUrl = {
+  backdrop: (path) => path ? `https://image.tmdb.org/t/p/original${path}` : '/fallback.jpg',
+  poster: (path) => path ? `https://image.tmdb.org/t/p/w500${path}` : '/fallback.jpg',
+};
 
