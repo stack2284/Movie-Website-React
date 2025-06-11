@@ -23,9 +23,21 @@ function Home() {
         fetchMovies();
     }, []);
 
-    const handelSearch = (e) => {
+    const handelSearch = async  (e) => {
         e.preventDefault();
-        alert(`Searching for: ${seachQuery}`);
+        if(!seachQuery.trim()) return;
+        if(loading) return;
+        setLoading(true);
+        try{
+            const searchResults = await searchMovies(seachQuery);
+            setMovies(searchResults);
+            setError(null);
+        }catch(error){
+            console.log(error);
+            setError("Failed to search...");
+        }finally{
+            setLoading(false);
+        }
     };
     return (
         <div className="home">
@@ -39,12 +51,17 @@ function Home() {
                 />
                 <button type="submit" className="search-button">Search</button>
             </form>
-            <div className="movies-grid">
-                {movies.map(
-                    (movie) =>
-                        (<MovieCard key={movie.id} movie={movie} />)
-                )}
-            </div>
+
+            {loading && <div className="loading">Loading...</div>}
+            {error && <div className="error">Error: {error}</div>}
+            {!loading && !error && (
+                <div className="movies-grid">
+                    {movies.map(
+                        (movie) =>
+                            (<MovieCard key={movie.id} movie={movie} />)
+                    )}
+                </div>
+            )}
         </div>
     )
 }

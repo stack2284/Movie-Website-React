@@ -87,7 +87,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 13%;
+    width: 10%;
     aspect-ratio: 1/1;  /* Makes it perfectly circular */
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.8);
@@ -98,7 +98,6 @@
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-    z-index: 2;
     opacity: 0;
     background-color: var(--d);
     font-size: 3vb;
