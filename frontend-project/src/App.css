@@ -17,7 +17,7 @@
 }
 .main-content {
   flex: 1;
-  padding: 2rem;
+  padding: 0rem;
   box-sizing: border-box;
   width: 100%;
   display: flex;

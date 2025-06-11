@@ -1,0 +1,121 @@
+.carousel-container {
+    width: 100%;
+    padding: 2rem 0;
+    position: relative;
+}
+
+.carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0rem;
+    margin-bottom: 1rem;
+}
+
+.carousel-title {
+    font-size: 3rem;
+    font-weight: bolder;
+    color: var(--text-color, white);
+    margin: 0;
+}
+
+.carousel-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.carousel-content {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 3rem 3rem; /* Add padding for the buttons */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 1s ease;
+    gap: 4rem;
+}
+
+.carousel-item {
+    flex: 0 0 calc(25% - 1rem); /* 4 cards per view with gap */
+    min-width: calc(25% - 1rem);
+}
+
+/* Enhanced Navigation buttons styling */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4), 0 0 2px #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    z-index: 10;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.carousel-button:hover {
+    transform: translateY(-50%) scale(1.25);
+    background: transparent;
+    color: #fff;
+    box-shadow: none;
+}
+
+.carousel-button:active {
+    transform: translateY(-50%) scale(0.95);
+    background: transparent;
+}
+
+/* Position the buttons */
+.carousel-button:first-of-type {
+    left: 0.5rem;
+}
+
+.carousel-button:last-of-type {
+    right: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .carousel-item {
+        flex: 0 0 calc(33.333% - 1rem); /* 3 cards per view */
+        min-width: calc(33.333% - 1rem);
+    }
+}
+
+@media (max-width: 900px) {
+    .carousel-item {
+        flex: 0 0 calc(50% - 1rem); /* 2 cards per view */
+        min-width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 600px) {
+    .carousel-item {
+        flex: 0 0 calc(100% - 1rem); /* 1 card per view */
+        min-width: calc(100% - 1rem);
+    }
+    
+    .carousel-title {
+        font-size: 1.5rem;
+    }
+
+    .carousel-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
