@@ -20,6 +20,7 @@ function Carousel({ title, movies }) {
     };
 
     return (
+
         <div className="carousel-container">
             <div className="carousel-header">
                 <h2 className="carousel-title">{title}</h2>
@@ -31,7 +32,7 @@ function Carousel({ title, movies }) {
                     style={{
                         transform: `translateX(-${currentIndex * (100 / cardsPerView)}%)`
                     }}
-                >
+                    >
                     {movies.map((movie, index) => (
                         <div key={index} className="carousel-item">
                             <MovieCard movie={movie} />
@@ -40,7 +41,7 @@ function Carousel({ title, movies }) {
                 </div>
                 <button onClick={nextSlide} className="carousel-button">→</button>
             </div>
-        </div>
+</div>
     );
 }
 
