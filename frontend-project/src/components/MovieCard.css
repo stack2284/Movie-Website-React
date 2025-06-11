@@ -6,7 +6,7 @@
     align-content: center;
     width: auto;
     height: auto;
-    margin: 2%;
+    margin: 4%;
 }
 
 .movie-card {
@@ -43,7 +43,7 @@
     transform: scale(1.05);
     transition: var(--transition);
     filter: blur(0.5rem);
-    opacity: 1;
+    opacity: 0.5;
 }
 
 .movie-poster::after, .movie-poster::before {
