@@ -1,4 +1,5 @@
 import './Favourite.css';
+import Lower from '../components/Lower'
 import NavBar from '../components/NavBar';
 import GradientBackground from '../components/GradientBackground';
 function Favourite() {
@@ -12,6 +13,7 @@ function Favourite() {
                     <p>start adding titles</p>
                 </div>
             </div>
+            <Lower></Lower>
         </>
     );
 }

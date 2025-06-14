@@ -1,8 +1,13 @@
-import GradientBackground from '../components/GradientBackground';
+import Lower from "../components/lower";
 
 function Test() {
-  return <GradientBackground />;
-}
+  return (<div>
+    <div className="test-page">
+      <Lower/>
+    </div>
+    </div>
+  )
+};
 
 export default Test;
 

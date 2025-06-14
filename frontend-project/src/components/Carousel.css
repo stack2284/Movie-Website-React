@@ -50,7 +50,7 @@
 .carousel-track {
     display: flex;
     transition: transform 1s ease;
-    gap: 4rem;
+    /* gap: 4rem; */
 }
 
 .carousel-item {

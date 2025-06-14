@@ -1,0 +1,62 @@
+.lowert{
+    position: relative;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    height: 100%;
+    /* background-color: rgba(5, 41, 79, 0.5); */
+    background-color: rgba(247, 196, 102, 0.692);
+    padding: 3%;
+    padding-left: 0%;
+    border-radius: 10vb;
+    margin-left: 3vb;
+    margin-right: 3vb;
+    /* border: 1vb solid orange; */
+    color: black;
+}
+
+.top{
+    position: relative;
+    display: grid;
+    justify-content: space-between;
+    margin-left: 2%;
+    margin-right: 2%;
+    grid-template-columns: 1.5fr 3fr;
+    justify-content: flex-end;
+    gap: 2vb;
+}
+
+.rest{
+    display: flex;
+    justify-content: space-between;
+    gap: 5vb;
+}
+
+.top h3{
+    font-size: 4vh;
+}
+
+.top-first p{
+    margin-top: 1vh;
+    font-size: larger;
+}
+
+.top-rest{
+    font-size: larger;
+}
+.top-rest p{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.bottom{
+    color: white;
+    position: absolute;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 5%;
+    background: none;
+
+}

@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import HomeCarousel from '../components/HomeCarousel';
 import Hero from '../components/Hero';
 import GradientBackground from '../components/GradientBackground';
+import Lower  from '../components/lower';
 import {
   getPopularMovies,
   getTrendingMovies,
@@ -73,6 +74,7 @@ function Home() {
                         secondaryBtn={{ label: 'Trending Now', href: '#trending' }}
                       />
                     )}
+
                     <HomeCarousel title="Popular Movies" fetchFn={getPopularMovies} />
                     <HomeCarousel title="Trending Movies" fetchFn={getTrendingMovies} />
                     <HomeCarousel title="Top Rated Movies" fetchFn={getTopRatedMovies} />
@@ -80,6 +82,7 @@ function Home() {
                     <HomeCarousel title="Trending TV Shows" fetchFn={getTrendingTV} isTV />
                 </div>
             </div>
+            <Lower></Lower>
         </>
     );
 }
