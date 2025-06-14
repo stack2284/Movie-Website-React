@@ -1,10 +1,10 @@
-import Lower from "../components/lower";
+import TVShowsPage from "./TVShowsPage";
 
 function Test() {
   return (<div>
     <div className="test-page">
-      <Lower/>
     </div>
+    <TVShowsPage></TVShowsPage>
     </div>
   )
 };

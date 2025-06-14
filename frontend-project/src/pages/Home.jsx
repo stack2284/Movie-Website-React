@@ -4,14 +4,14 @@ import NavBar from "../components/NavBar";
 import HomeCarousel from '../components/HomeCarousel';
 import Hero from '../components/Hero';
 import GradientBackground from '../components/GradientBackground';
-import Lower  from '../components/lower';
+import Lower from '../components/lower';
 import {
-  getPopularMovies,
-  getTrendingMovies,
-  getTopRatedMovies,
-  getPopularTV,
-  getTrendingTV,
-  getImageUrl
+    getPopularMovies,
+    getTrendingMovies,
+    getTopRatedMovies,
+    getPopularTV,
+    getTrendingTV,
+    getImageUrl
 } from '../services/api';
 import './Home.css';
 
@@ -47,7 +47,12 @@ function Home() {
         }
     };
 
-    const featuredMovie = heroMovies[heroIndex];
+    const featuredMovie = heroMovies[heroIndex] || {
+        backdrop_path: '',
+        title: 'No Movie Available',
+        overview: 'No description available.',
+        id: '',
+    };
 
     return (
         <>
@@ -66,13 +71,13 @@ function Home() {
                         <button type="submit" className="search-button">Search</button>
                     </form>
                     {featuredMovie && (
-                      <Hero
-                        backgroundImage={getImageUrl.backdrop(featuredMovie.backdrop_path)}
-                        title={featuredMovie.title}
-                        overview={featuredMovie.overview}
-                        primaryBtn={{ label: 'View Details', to: `/movie/${featuredMovie.id}` }}
-                        secondaryBtn={{ label: 'Trending Now', href: '#trending' }}
-                      />
+                        <Hero
+                            backgroundImage={getImageUrl.backdrop(featuredMovie.backdrop_path)}
+                            title={featuredMovie.title}
+                            overview={featuredMovie.overview}
+                            primaryBtn={{ label: 'View Details', to: `/movie/${featuredMovie.id}` }}
+                            secondaryBtn={{ label: 'Trending Now', href: '#trending' }}
+                        />
                     )}
 
                     <HomeCarousel title="Popular Movies" fetchFn={getPopularMovies} />

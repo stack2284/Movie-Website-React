@@ -16,8 +16,8 @@ function Lower() {
                         <h3>Navigation</h3>
                         <p className="nav-links" onClick={() => window.location.href = '/'}>Home</p>
                         <p className="nav-links" onClick={() => window.location.href = '/favourite'}>Favorites</p>
-                        <p className="nav-links" onClick={() => window.location.href = '/'}>Movies</p>
-                        <p className="nav-links" onClick={() => window.location.href = '/'}>Tv Series</p>
+                        <p className="nav-links" onClick={() => window.location.href = '/movies'}>Movies</p>
+                        <p className="nav-links" onClick={() => window.location.href = '/tvseries'}>Tv Series</p>
                     </div>
                     <div className="top-rest">
                         <h3>Legal</h3>
@@ -34,7 +34,7 @@ function Lower() {
                 </div>
             </div>
             <div className="bottom">
-                <p>©{new Date().getFullYear()} CineConnect. All rights reserved.</p>
+                <p>©{new Date().getFullYear()} MovieApp. All rights reserved.</p>
                 <p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
             </div>
         </div>

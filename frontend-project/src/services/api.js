@@ -20,11 +20,14 @@ export const searchMovies = async (query) => {
 }
 
 // New functions for more categories
-export const getTrendingMovies = async () => {
-    const response = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`);
+export const getTrendingMovies = async (page = 1) => {
+    const response = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${page}`);
     const data = await response.json();
-    return data.results;
-}
+    return {
+        results: data.results,
+        totalPages: data.total_pages,
+    };
+};
 
 export const getTopRatedMovies = async () => {
     const response = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
@@ -55,6 +58,15 @@ export const getTopRatedTV = async () => {
     const data = await response.json();
     return data.results;
 }
+
+export const getTrendingTVShows = async (page = 1) => {
+    const response = await fetch(`${BASE_URL}/trending/tv/week?api_key=${API_KEY}&page=${page}`);
+    const data = await response.json();
+    return {
+        results: data.results,
+        totalPages: data.total_pages,
+    };
+};
 
 export const getImageUrl = {
   backdrop: (path) => path ? `https://image.tmdb.org/t/p/original${path}` : '/fallback.jpg',
