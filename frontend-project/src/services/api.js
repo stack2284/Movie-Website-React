@@ -1,4 +1,4 @@
-const API_KEY = "41a612e50aa72e936780f2c959b4b964";
+const API_KEY = "tmdb_api_key"; // Replace with your tmdb api key 
 const BASE_URL = "https://api.themoviedb.org/3";
 
 export const getPopularMovies = async () => {
@@ -19,7 +19,6 @@ export const searchMovies = async (query) => {
     return data.results;
 }
 
-// New functions for more categories
 export const getTrendingMovies = async (page = 1) => {
     const response = await fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&page=${page}`);
     const data = await response.json();

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './Sign_in.css';
+import { loginUser } from '../services/authService';
 
 function Sign_in() {
     useEffect(() => {
@@ -19,10 +20,16 @@ function Sign_in() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // TODO: Implement sign in logic
-        console.log('Form submitted:', formData);
+        try {
+            const response = await loginUser(formData);
+            alert('Login successful');
+            localStorage.setItem('token', response.token);
+        } catch (error) {
+            const errorMessage = error.response?.message || 'An error occurred';
+            alert(errorMessage);
+        }
     };
 
     return (
