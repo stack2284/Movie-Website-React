@@ -1,0 +1,8 @@
+express
+mongoose
+cors
+dotenv
+react
+react-dom
+vite
+jsonwebtoken
